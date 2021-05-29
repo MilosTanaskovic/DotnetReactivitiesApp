@@ -4,9 +4,11 @@ import { Activity } from '../../../app/modules/activity'
 
 interface Props {
     activities: Activity[];
+    selectActivity: (id: string) => void;
 }
 
-export default function ActivityList({activities}: Props) {
+export default function ActivityList(props: Props) {
+    const {activities, selectActivity} = props;
     return (
         <Segment>
             <Item.Group divided>
@@ -26,7 +28,7 @@ export default function ActivityList({activities}: Props) {
                                 <div>{city}, {venue}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button floated="right" content="View" color="blue" />
+                                <Button onClick={() => selectActivity(activity.id)} floated="right" content="View" color="blue" />
                                 <Label basic content={category} />
                             </Item.Extra>
                         </Item.Content>
