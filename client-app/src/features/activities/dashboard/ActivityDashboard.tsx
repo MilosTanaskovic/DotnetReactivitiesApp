@@ -2,6 +2,7 @@ import React from 'react'
 import { Grid, List } from 'semantic-ui-react'
 import { Activity } from '../../../app/modules/activity';
 import ActivityDetails from '../details/ActivityDetails';
+import ActivityForm from '../form/ActivityForm';
 import ActivityList from './ActivityList';
 
 interface Props {
@@ -19,6 +20,7 @@ export default function ActivityDashboard({activities}: Props) {
                     activities[0] && 
                     <ActivityDetails activity={activities[0]} />
                 }
+                <ActivityForm />
             </Grid.Column>
         </Grid>
     )
