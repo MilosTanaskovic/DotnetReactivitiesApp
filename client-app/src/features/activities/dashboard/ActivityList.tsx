@@ -1,16 +1,11 @@
+import { observer } from 'mobx-react-lite';
 import React, {SyntheticEvent, useState} from 'react'
 import { Button, Item, Label, Segment } from 'semantic-ui-react'
-import { Activity } from '../../../app/modules/activity'
+import { useStore } from '../../../app/stores/store';
 
-interface Props {
-    activities: Activity[];
-    selectActivity: (id: string) => void;
-    deleteActivity: (id: string) => void;
-    submitting: boolean;
-}
-
-export default function ActivityList(props: Props) {
-    const {activities, selectActivity, deleteActivity, submitting} = props;
+export default observer(function ActivityList() {
+    const {activityStore} = useStore();
+    const {deleteActivity, activitiesByDate, loading} = activityStore;
 
     const [target, setTarget] = useState('');
 
@@ -22,7 +17,7 @@ export default function ActivityList(props: Props) {
     return (
         <Segment>
             <Item.Group divided>
-                {activities.map(activity => { 
+                {activitiesByDate.map(activity => { 
                     const { id, title, date, description, category, city, venue } = activity;
                     return (
                         <Item key={id}>
@@ -38,10 +33,10 @@ export default function ActivityList(props: Props) {
                                 <div>{city}, {venue}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button onClick={() => selectActivity(activity.id)} floated="right" content="View" color="blue" />
+                                <Button onClick={() => activityStore.selectActivity(activity.id)} floated="right" content="View" color="blue" />
                                 <Button 
                                     name={activity.id}
-                                    loading={submitting && target === activity.id} 
+                                    loading={loading && target === activity.id} 
                                     onClick={(e) => handleActivityDelete(e, activity.id)} 
                                     floated="right" 
                                     content="Delete" 
@@ -56,4 +51,4 @@ export default function ActivityList(props: Props) {
             </Item.Group>
         </Segment>
     )
-}
+});
