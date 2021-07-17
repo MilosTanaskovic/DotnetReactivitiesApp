@@ -13,7 +13,7 @@ export default function HomePage() {
                 </Header>
                 <Header as="h2" inverted content="Welcome to CodeDancing Activities" />
                 <Button as={Link} to="/activities" size='huge' inverted>
-                    Take me to the Activities!
+                    Login!
                 </Button>
            </Container>
        </Segment>
