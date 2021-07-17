@@ -12,7 +12,7 @@ export default function HomePage() {
                     CodeDancing Activities
                 </Header>
                 <Header as="h2" inverted content="Welcome to CodeDancing Activities" />
-                <Button as={Link} to="/activities" size='huge' inverted>
+                <Button as={Link} to="/login" size='huge' inverted>
                     Login!
                 </Button>
            </Container>
